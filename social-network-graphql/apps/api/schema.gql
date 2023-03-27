@@ -1,0 +1,64 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Comment {
+  id: String!
+  authorId: String!
+  postId: String!
+
+  """Comment content"""
+  content: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Reaction {
+  id: String!
+  authorId: String!
+  postId: String!
+
+  """Reaction emoji"""
+  reactionEmoji: String!
+}
+
+type Post {
+  id: String!
+  authorId: String!
+
+  """Post content"""
+  content: String!
+  comments: [Comment!]!
+  reactions: [Reaction!]!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Token {
+  accessToken: String!
+
+  """Username"""
+  username: String!
+}
+
+type Query {
+  helloWorld: String!
+  getPosts(limit: Int, olderThen: Int): [Post!]!
+}
+
+type Mutation {
+  """Create new user"""
+  createUser(username: String!, password: String!): Token!
+
+  """Login user"""
+  loginUser(username: String!, password: String!): Token!
+
+  """Create new post"""
+  createPost(content: String!): Post!
+
+  """React to post"""
+  createReaction(reactionEmoji: String!, postId: String!): Reaction!
+
+  """Comment on post"""
+  createComment(content: String!, postId: String!): Comment!
+}
